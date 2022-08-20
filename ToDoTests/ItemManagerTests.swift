@@ -11,13 +11,13 @@ import XCTest
 class ItemManagerTests: XCTestCase {
     var sut: ItemManager!
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        // Put setup code here. This method is called before the invocation of each test method in the class
         sut = ItemManager()
     }
     
     override func tearDownWithError() throws {
         sut = nil
-        // Put teardown code here. This method is calld after the invocation of each test method in the class.
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     func test_ToDoCount_Initially_IsZero() {
         XCTAssertEqual(sut.toDoCount, 0)
