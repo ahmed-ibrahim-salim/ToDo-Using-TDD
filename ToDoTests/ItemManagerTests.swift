@@ -17,7 +17,7 @@ class ItemManagerTests: XCTestCase {
     
     override func tearDownWithError() throws {
         sut = nil
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        // Put teardown code here. This method is calld after the invocation of each test method in the class.
     }
     func test_ToDoCount_Initially_IsZero() {
         XCTAssertEqual(sut.toDoCount, 0)
