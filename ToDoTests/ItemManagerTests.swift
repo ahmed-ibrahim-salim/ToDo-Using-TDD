@@ -55,12 +55,39 @@ class ItemManagerTests: XCTestCase {
         XCTAssertEqual(sut.item(at: 0).title, "Second")
     }
     func test_DoneItemAt_ReturnsCheckedItem(){
-        let item = ToDoItem(title: "Mega")
+        let item = ToDoItem(title: "mega")
         sut.add(item)
-        sut.checkItem(at: 0)
         
+        sut.checkItem(at: 0)
         let returnedItem = sut.doneItem(at: 0)
         
         XCTAssertEqual(returnedItem.title, item.title)
+    }
+    func test_EqualItems_AreEqual(){
+        let item1 = ToDoItem(title: "mega")
+        let item2 = ToDoItem(title: "mega")
+        
+        XCTAssertEqual(item1, item2)
+    }
+    func test_Items_WhenLocationDiffers_AreNotEqual(){
+        let item1 = ToDoItem(title: "mega",location: Location(name: "Foo"))
+        let item2 = ToDoItem(title: "mega",location: Location(name: "Foo"))
+        XCTAssertEqual(item1, item2)
+    }
+    func test_RemoveAll_ResultsInCountsBeZero(){
+        let first = ToDoItem(title: "Foo")
+        let second = ToDoItem(title: "Bar")
+        
+        sut.add(first)
+        sut.add(second)
+        sut.checkItem(at: 0)
+        
+        XCTAssertEqual(sut.toDoCount, 1)
+        XCTAssertEqual(sut.doneCount, 1)
+        
+        sut.removeAll()
+        
+        XCTAssertEqual(sut.toDoCount, 0)
+        XCTAssertEqual(sut.doneCount, 0)
     }
 }
