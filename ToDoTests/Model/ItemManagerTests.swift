@@ -34,7 +34,7 @@ class ItemManagerTests: XCTestCase {
         
         sut.add(item)
         
-        let returnedItem = sut.item(at: 0)
+        let returnedItem = sut.toDoItem(at: 0)
         XCTAssertEqual(returnedItem.title, item.title)
     }
     func test_CheckItemAt_ChangesCounts() {
@@ -52,7 +52,7 @@ class ItemManagerTests: XCTestCase {
         sut.add(second)
         
         sut.checkItem(at: 0)
-        XCTAssertEqual(sut.item(at: 0).title, "Second")
+        XCTAssertEqual(sut.toDoItem(at: 0).title, "Second")
     }
     func test_DoneItemAt_ReturnsCheckedItem(){
         let item = ToDoItem(title: "mega")
@@ -98,5 +98,19 @@ class ItemManagerTests: XCTestCase {
         sut.add(second)
         
         XCTAssertEqual(sut.toDoCount, 1)
+    }
+    func test_UnCheckItem_ItemUnchecked(){
+        let first = ToDoItem(title: "First")
+        let second = ToDoItem(title: "Second")
+        
+        sut.add(first)
+        sut.add(second)
+        sut.checkItem(at: 0)
+        sut.checkItem(at: 0)
+        
+        sut.uncheckItem(at: 1)
+        
+        XCTAssertEqual(second, sut.toDoItem(at: 0))
+        
     }
 }

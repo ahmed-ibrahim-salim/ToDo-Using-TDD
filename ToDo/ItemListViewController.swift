@@ -8,7 +8,6 @@
 import UIKit
 
 class ItemListViewController: UIViewController {
-    var tableView1: UITableView?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate)!

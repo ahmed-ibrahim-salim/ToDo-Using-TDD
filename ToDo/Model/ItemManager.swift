@@ -20,15 +20,19 @@ class ItemManager{
             toDoItems.append(toDoItem)
         }
     }
-    func item(at index: Int)-> ToDoItem{
+    func toDoItem(at index: Int)-> ToDoItem{
         return toDoItems[index]
+    }
+    func doneItem(at index: Int)-> ToDoItem{
+        return doneItems[index]
     }
     func checkItem(at index: Int){
         let item = toDoItems.remove(at: index)
         doneItems.append(item)
     }
-    func doneItem(at index: Int)-> ToDoItem{
-        return doneItems[index]
+    func uncheckItem(at index: Int) {
+         let item = doneItems.remove(at: index)
+         toDoItems.append(item)
     }
     func removeAll(){
         toDoItems.removeAll()

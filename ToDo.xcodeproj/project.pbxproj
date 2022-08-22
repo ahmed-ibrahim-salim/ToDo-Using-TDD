@@ -24,6 +24,9 @@
 		EF79192228B15FB300C76CAB /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79192128B15FB300C76CAB /* LocationTests.swift */; };
 		EF79192428B163F300C76CAB /* ItemManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79192328B163F300C76CAB /* ItemManagerTests.swift */; };
 		EF79192628B1640600C76CAB /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF79192528B1640600C76CAB /* ItemManager.swift */; };
+		EFBEF76128B396BB006EF64A /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEF76028B396BB006EF64A /* ItemCell.swift */; };
+		EFBEF76328B3B6BE006EF64A /* ItemCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEF76228B3B6BE006EF64A /* ItemCellTests.swift */; };
+		EFBEF76528B3D068006EF64A /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBEF76428B3D068006EF64A /* DetailViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		EF79192128B15FB300C76CAB /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		EF79192328B163F300C76CAB /* ItemManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManagerTests.swift; sourceTree = "<group>"; };
 		EF79192528B1640600C76CAB /* ItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
+		EFBEF76028B396BB006EF64A /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		EFBEF76228B3B6BE006EF64A /* ItemCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellTests.swift; sourceTree = "<group>"; };
+		EFBEF76428B3D068006EF64A /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +150,7 @@
 				EF203ECD28B2B82B000E3AAD /* Model */,
 				EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */,
 				EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */,
+				EFBEF76028B396BB006EF64A /* ItemCell.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -154,6 +161,8 @@
 				EF203ECE28B2B83E000E3AAD /* Model */,
 				EF203ECF28B2B88F000E3AAD /* ItemListViewControllerTest.swift */,
 				EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */,
+				EFBEF76228B3B6BE006EF64A /* ItemCellTests.swift */,
+				EFBEF76428B3D068006EF64A /* DetailViewControllerTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -299,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBEF76128B396BB006EF64A /* ItemCell.swift in Sources */,
 				EF203ED228B2B9BB000E3AAD /* ItemListViewController.swift in Sources */,
 				EF203ED428B2BD59000E3AAD /* ItemListDataProvider.swift in Sources */,
 				EF70DE5928B122A600D1C2F1 /* AppDelegate.swift in Sources */,
@@ -313,9 +323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFBEF76328B3B6BE006EF64A /* ItemCellTests.swift in Sources */,
 				EF203ED628B2C379000E3AAD /* ItemListDataProviderTests.swift in Sources */,
 				EF79192428B163F300C76CAB /* ItemManagerTests.swift in Sources */,
 				EF79192228B15FB300C76CAB /* LocationTests.swift in Sources */,
+				EFBEF76528B3D068006EF64A /* DetailViewControllerTests.swift in Sources */,
 				EF203ED028B2B88F000E3AAD /* ItemListViewControllerTest.swift in Sources */,
 				EF70DE8928B122E700D1C2F1 /* ToDoItemTests.swift in Sources */,
 			);
@@ -545,7 +557,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AJ7MW2XDAX;
+				DEVELOPMENT_TEAM = 5M56RJ5C85;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -572,7 +584,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AJ7MW2XDAX;
+				DEVELOPMENT_TEAM = 5M56RJ5C85;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -596,7 +608,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AJ7MW2XDAX;
+				DEVELOPMENT_TEAM = 5M56RJ5C85;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = justme.ToDoUITests;
@@ -614,7 +626,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AJ7MW2XDAX;
+				DEVELOPMENT_TEAM = 5M56RJ5C85;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = justme.ToDoUITests;
