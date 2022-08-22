@@ -15,15 +15,15 @@ class ItemManager{
     private var doneItems: [ToDoItem] = []
 
     func add(_ toDoItem: ToDoItem){
-//        toDoCount += 1
-        toDoItems.append(toDoItem)
+        
+        if !toDoItems.contains(toDoItem){
+            toDoItems.append(toDoItem)
+        }
     }
     func item(at index: Int)-> ToDoItem{
         return toDoItems[index]
     }
     func checkItem(at index: Int){
-//        toDoCount -= 1
-//        doneCount += 1
         let item = toDoItems.remove(at: index)
         doneItems.append(item)
     }
