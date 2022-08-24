@@ -11,6 +11,7 @@
 		EF203ED228B2B9BB000E3AAD /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */; };
 		EF203ED428B2BD59000E3AAD /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */; };
 		EF203ED628B2C379000E3AAD /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */; };
+		EF592C4328B61CDC00D2C1C9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */; };
 		EF70DE5928B122A600D1C2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF70DE5828B122A600D1C2F1 /* AppDelegate.swift */; };
 		EF70DE5B28B122A600D1C2F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF70DE5A28B122A600D1C2F1 /* SceneDelegate.swift */; };
 		EF70DE6028B122A600D1C2F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF70DE5E28B122A600D1C2F1 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 		EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
+		EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EF70DE5528B122A600D1C2F1 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF70DE5828B122A600D1C2F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF70DE5A28B122A600D1C2F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */,
 				EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */,
 				EFBEF76028B396BB006EF64A /* ItemCell.swift */,
+				EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF592C4328B61CDC00D2C1C9 /* DetailViewController.swift in Sources */,
 				EFBEF76128B396BB006EF64A /* ItemCell.swift in Sources */,
 				EF203ED228B2B9BB000E3AAD /* ItemListViewController.swift in Sources */,
 				EF203ED428B2BD59000E3AAD /* ItemListDataProvider.swift in Sources */,

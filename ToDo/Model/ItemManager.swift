@@ -13,7 +13,8 @@ class ItemManager{
     var doneCount: Int { return doneItems.count }
     private var toDoItems: [ToDoItem] = []
     private var doneItems: [ToDoItem] = []
-
+    
+    
     func add(_ toDoItem: ToDoItem){
         
         if !toDoItems.contains(toDoItem){
