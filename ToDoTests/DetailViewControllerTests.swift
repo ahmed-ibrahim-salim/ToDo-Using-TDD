@@ -12,6 +12,7 @@ import CoreLocation
 
 class DetailViewControllerTests: XCTestCase {
     var sut: DetailViewController!
+    var itemManager: ItemManager!
     
     override func setUpWithError() throws {
         let storyboard = UIStoryboard(name: "Main",
@@ -21,6 +22,7 @@ class DetailViewControllerTests: XCTestCase {
                 withIdentifier: "DetailViewController")
         as? DetailViewController
         sut.loadViewIfNeeded()
+        itemManager = ItemManager()
     }
     
     override func tearDownWithError() throws {}
@@ -53,7 +55,7 @@ class DetailViewControllerTests: XCTestCase {
                             itemDescription: "Baz",
                             timestamp: 1456150025,
                             location: location)
-        let itemManager = ItemManager()
+        
         itemManager.add(item)
         
         sut.itemInfo = (itemManager, 0)
@@ -72,4 +74,14 @@ class DetailViewControllerTests: XCTestCase {
                        coordinate.longitude,
                        accuracy: 0.001)
     }
+    func test_CheckItem_ChecksItemInItemManagaer(){
+        itemManager.add(ToDoItem(title: "Foo"))
+        sut.itemInfo = (itemManager,0)
+        
+        sut.checkItem()
+        
+        XCTAssertEqual(itemManager.toDoCount, 0)
+        XCTAssertEqual(itemManager.doneCount, 1)
+    }
+    
 }

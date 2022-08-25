@@ -11,6 +11,8 @@
 		EF203ED228B2B9BB000E3AAD /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */; };
 		EF203ED428B2BD59000E3AAD /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */; };
 		EF203ED628B2C379000E3AAD /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */; };
+		EF3C201D28B79AC40023562F /* InputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C201C28B79AC40023562F /* InputViewControllerTests.swift */; };
+		EF3C201F28B79B0D0023562F /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C201E28B79B0D0023562F /* InputViewController.swift */; };
 		EF592C4328B61CDC00D2C1C9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */; };
 		EF70DE5928B122A600D1C2F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF70DE5828B122A600D1C2F1 /* AppDelegate.swift */; };
 		EF70DE5B28B122A600D1C2F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF70DE5A28B122A600D1C2F1 /* SceneDelegate.swift */; };
@@ -52,6 +54,8 @@
 		EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 		EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
+		EF3C201C28B79AC40023562F /* InputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewControllerTests.swift; sourceTree = "<group>"; };
+		EF3C201E28B79B0D0023562F /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EF70DE5528B122A600D1C2F1 /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF70DE5828B122A600D1C2F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */,
 				EFBEF76028B396BB006EF64A /* ItemCell.swift */,
 				EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */,
+				EF3C201E28B79B0D0023562F /* InputViewController.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */,
 				EFBEF76228B3B6BE006EF64A /* ItemCellTests.swift */,
 				EFBEF76428B3D068006EF64A /* DetailViewControllerTests.swift */,
+				EF3C201C28B79AC40023562F /* InputViewControllerTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF592C4328B61CDC00D2C1C9 /* DetailViewController.swift in Sources */,
+				EF3C201F28B79B0D0023562F /* InputViewController.swift in Sources */,
 				EFBEF76128B396BB006EF64A /* ItemCell.swift in Sources */,
 				EF203ED228B2B9BB000E3AAD /* ItemListViewController.swift in Sources */,
 				EF203ED428B2BD59000E3AAD /* ItemListDataProvider.swift in Sources */,
@@ -330,6 +337,7 @@
 				EFBEF76328B3B6BE006EF64A /* ItemCellTests.swift in Sources */,
 				EF203ED628B2C379000E3AAD /* ItemListDataProviderTests.swift in Sources */,
 				EF79192428B163F300C76CAB /* ItemManagerTests.swift in Sources */,
+				EF3C201D28B79AC40023562F /* InputViewControllerTests.swift in Sources */,
 				EF79192228B15FB300C76CAB /* LocationTests.swift in Sources */,
 				EFBEF76528B3D068006EF64A /* DetailViewControllerTests.swift in Sources */,
 				EF203ED028B2B88F000E3AAD /* ItemListViewControllerTest.swift in Sources */,

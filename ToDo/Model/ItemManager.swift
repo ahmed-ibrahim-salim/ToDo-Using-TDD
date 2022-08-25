@@ -21,6 +21,9 @@ class ItemManager{
             toDoItems.append(toDoItem)
         }
     }
+    func item(at index:Int)->ToDoItem{
+        return toDoItems[index]
+    }
     func toDoItem(at index: Int)-> ToDoItem{
         return toDoItems[index]
     }
