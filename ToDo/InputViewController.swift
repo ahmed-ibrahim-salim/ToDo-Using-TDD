@@ -32,22 +32,26 @@ class InputViewController: UIViewController {
         super.viewDidLoad()
         
     }
-    func save(){
-        guard let titleString = titleTextField.text,
-              titleString.count > 0 else { return }
+    @IBAction func save(){
+        guard let titleString = titleTextField.text, titleString.count > 0 else { return }
+        
         let date: Date?
+        
         if let dateText = self.dateTextField.text,
            dateText.count > 0 {
             date = dateFormatter.date(from: dateText)
         } else {
-            date = nil }
+            date = nil
+        }
+        
         let descriptionString = descriptionTextField.text
+        
         if let locationName = locationTextField.text,
            locationName.count > 0 {
             if let address = addressTextField.text,
                address.count > 0 {
                 geocoder.geocodeAddressString(address) {
-                    [unowned self] (placeMarks, error) -> Void in
+                    (placeMarks, error) in
                     let placeMark = placeMarks?.first
                     let item = ToDoItem(
                         title: titleString,
@@ -58,7 +62,14 @@ class InputViewController: UIViewController {
                             coordinate: placeMark?.location?.coordinate))
                     self.itemManager?.add(item)
                 }
-            } }
+            }
+        }else{
+            let itemWithNolocation = ToDoItem(
+                title: titleString,
+                itemDescription: descriptionString,
+                timestamp: date?.timeIntervalSince1970,
+                location: nil)
+            self.itemManager?.add(itemWithNolocation)
+        }
     }
-    
 }

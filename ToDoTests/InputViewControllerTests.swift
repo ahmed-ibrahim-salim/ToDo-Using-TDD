@@ -13,6 +13,7 @@ import CoreLocation
 class InputViewControllerTests: XCTestCase {
     var sut: InputViewController!
     var placemark: MockPlacemark!
+    var itemManager: ItemManager!
     
     override func setUpWithError() throws {
         let storyboard = UIStoryboard(name: "Main",
@@ -22,6 +23,9 @@ class InputViewControllerTests: XCTestCase {
                 withIdentifier: "InputViewController")
         as? InputViewController
         sut.loadViewIfNeeded()
+        itemManager = ItemManager()
+        sut.itemManager = itemManager
+        
     }
     
     override func tearDownWithError() throws {}
@@ -58,36 +62,55 @@ class InputViewControllerTests: XCTestCase {
     func test_Save_UsesGeocoderToGetCoordinateFromAddress(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        let timestamp = 1456095600.0
+        let timestamp = 1456092000.0
         let date = Date(timeIntervalSince1970: timestamp)
-        
+
         sut.titleTextField.text = "Foo"
         sut.dateTextField.text = dateFormatter.string(from: date)
         sut.locationTextField.text = "Bar"
         sut.addressTextField.text = "Infinite Loop 1, Cupertino"
         sut.descriptionTextField.text = "Baz"
-        
+
         let mockGeocoder = MockGeocoder()
         sut.geocoder = mockGeocoder
-        
-        sut.itemManager = ItemManager()
-        
+
         sut.save()
-        
+
         placemark = MockPlacemark()
-        let coordinate = CLLocationCoordinate2DMake(37.3316851, -122.0300674)
-        
+
+        let coordinate = CLLocationCoordinate2D(latitude: 37.3316851, longitude: -122.0300674)
         placemark.mockCoordinate = coordinate
+
         mockGeocoder.completionHandler?([placemark], nil)
-        
-        let item = sut.itemManager?.toDoItem(at: 0)
-        
+
+        let item = sut.itemManager?.item(at: 0)
+
         let testItem = ToDoItem(title: "Foo",
-            itemDescription: "Baz",
-            timestamp: timestamp,
-            location: Location(name: "Bar",coordinate:coordinate))
+                                itemDescription: "Baz",
+                                timestamp: timestamp,
+                                location: Location(name: "Bar",
+                                                coordinate: coordinate))
 
         XCTAssertEqual(item, testItem)
+    }
+    func test_Save_AtLeastAddTitleToItemToBeAdded_AddsItem(){
+        // given
+        sut.titleTextField.text = "Foo"
+        
+        // when
+        sut.save()
+        
+        // then
+        XCTAssertEqual(sut.itemManager?.toDoCount, 1)
+    }
+    func test_SaveButtonHasSaveAction(){
+        let saveButton: UIButton = sut.saveButton
+        
+        guard let actions = saveButton.actions(forTarget: sut, forControlEvent: .touchUpInside)else{
+            XCTFail(); return
+        }
+        
+        XCTAssertTrue(actions.contains("save"))
     }
 }
 
@@ -110,7 +133,7 @@ extension InputViewControllerTests {
         
         override var location: CLLocation? {
             guard let mockCoordinate = mockCoordinate else {
-                return CLLocation()
+                return nil
             }
             return CLLocation(latitude: mockCoordinate.latitude, longitude: mockCoordinate.longitude)
         }
