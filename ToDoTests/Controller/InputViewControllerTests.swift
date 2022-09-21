@@ -133,7 +133,7 @@ class InputViewControllerTests: XCTestCase {
             geocoderAnswered.fulfill()
         }
         
-        waitForExpectations(timeout: 2)
+        waitForExpectations(timeout: 3)
     }
 
 }
