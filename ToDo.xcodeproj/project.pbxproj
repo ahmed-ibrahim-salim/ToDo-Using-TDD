@@ -154,11 +154,7 @@
 				EF70DE6328B122A800D1C2F1 /* LaunchScreen.storyboard */,
 				EF70DE6628B122A800D1C2F1 /* Info.plist */,
 				EF203ECD28B2B82B000E3AAD /* Model */,
-				EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */,
-				EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */,
-				EFBEF76028B396BB006EF64A /* ItemCell.swift */,
-				EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */,
-				EF3C201E28B79B0D0023562F /* InputViewController.swift */,
+				EFA9A27C28DAFA56008C9F58 /* Controller */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -183,6 +179,18 @@
 				EF70DE7B28B122A900D1C2F1 /* ToDoUITestsLaunchTests.swift */,
 			);
 			path = ToDoUITests;
+			sourceTree = "<group>";
+		};
+		EFA9A27C28DAFA56008C9F58 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EFBEF76028B396BB006EF64A /* ItemCell.swift */,
+				EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */,
+				EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */,
+				EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */,
+				EF3C201E28B79B0D0023562F /* InputViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
