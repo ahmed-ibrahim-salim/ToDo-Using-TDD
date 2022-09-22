@@ -22,11 +22,26 @@ class APIClient{
     func loginUser(withName username: String,
                    password: String,
                    completion: @escaping (Token?, Error?) -> Void) {
-        guard let url = URL(string: "https://awesometodos.com") else {
+        
+        let queryItems = [URLQueryItem(name: "username", value:                                username.percentEncoded),
+                          URLQueryItem(name: "password", value: password.percentEncoded)]
+        guard let url = URL(string: "https://awesometodos.com/login?\(queryItems[0])&\(queryItems[1])") else {
             fatalError()
         }
+        
         _ = session.dataTask(with: url) { (data, response, error) in
         }
+    }
+}
+extension String {
+    
+    var percentEncoded: String {
+        
+        let allowedCharacters = CharacterSet(
+             charactersIn:
+             "/%&=?$#+-~@<>|\\*,.()[]{}^!").inverted
+        guard let encoded = self.addingPercentEncoding(withAllowedCharacters: allowedCharacters)else{fatalError()}
+        return encoded
     }
 }
 
