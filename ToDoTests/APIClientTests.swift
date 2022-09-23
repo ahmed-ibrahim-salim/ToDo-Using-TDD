@@ -14,7 +14,7 @@ class APIClientTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = APIClient()
-        mockURLSession = MockURLSession()
+        mockURLSession = MockURLSession(data: nil, urlResponse: nil, responseError: nil)
         sut.session = mockURLSession
     }
     
@@ -53,6 +53,73 @@ class APIClientTests: XCTestCase {
         // then
         XCTAssertEqual(mockURLSession.urlComponents?.percentEncodedQuery, "username=dasd%C3%B6m&password=%25%2634")
     }
+    func test_Login_WhenSuccessful_CreatesToken() {
+        // (\") backslah to include " in the string
+        let jsonData = "{\"token\" : \"1234567890\"}".data(using: .utf8)
+        mockURLSession = MockURLSession(data: jsonData, urlResponse: nil, responseError: nil)
+        sut.session = mockURLSession
+        
+        let tokenExpectation = expectation(description: "Token expectation")
+        var caughtToken: Token?
+        sut.loginUser(withName: "Foo", password: "Bar"){ token, _ in
+            caughtToken = token
+            tokenExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1){ _ in
+            XCTAssertEqual(caughtToken?.id, "1234567890")
+        }
+    }
+    func test_Login_WhenJSONIsInvalid_ReturnsError() {
+        mockURLSession = MockURLSession(data: Data(), urlResponse: nil, responseError: nil)
+        sut.session = mockURLSession
+        let errorExpectation = expectation(description: "Error expectation")
+        
+        var caughtError: Error?
+        sut.loginUser(withName: "Foo", password: "Bar"){ (token, error) in
+            caughtError = error
+            errorExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1){
+            _ in
+            XCTAssertNotNil(caughtError)
+            
+        }
+    }
+    func test_Login_WhenDataIsNil_ReturnsError() {
+        mockURLSession = MockURLSession(data: nil, urlResponse: nil, responseError: nil)
+        sut.session = mockURLSession
+        let errorExpectation = expectation(description: "Error expectation")
+        
+        var caughtError: Error?
+        sut.loginUser(withName: "Foo", password: "Bar"){ (token, error) in
+            caughtError = error
+            errorExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1){
+            _ in
+            XCTAssertNotNil(caughtError)
+            
+        }
+    }
+    func test_Login_WhenResponseHasError_ReturnsError() {
+        let error = NSError(domain: "Server Error", code: 123, userInfo: nil)
+        let jsonData = "{\"token\" : \"1234\"}".data(using: .utf8)
+        let mockSession = MockURLSession(data: jsonData, urlResponse: nil, responseError: error)
+        sut.session = mockSession
+        
+        let errorExpectation = expectation(description: "Error")
+        var catchedError: Error? = nil
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, error) in
+          catchedError = error
+          errorExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { (error) in
+          XCTAssertNotNil(catchedError)
+   }
+    }
 }
 
 extension APIClientTests{
@@ -65,7 +132,7 @@ extension APIClientTests{
             }
             return URLComponents(url: url, resolvingAgainstBaseURL: true)
         }
-        private let dataTask: MockTask?
+        private let dataTask: MockTask
         
         init(data: Data?, urlResponse: URLResponse?, responseError: Error?){
             self.dataTask = MockTask(data: data, urlResponse: urlResponse, responseError: responseError)
@@ -73,7 +140,8 @@ extension APIClientTests{
         
         func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)-> URLSessionDataTask{
             self.url = url
-            return URLSession.shared.dataTask(with: url)
+            dataTask.completionHandler = completionHandler
+            return dataTask
         }
     }
     
@@ -83,6 +151,7 @@ extension APIClientTests{
         private let urlResponse: URLResponse?
         private let responseError: Error?
         var completionHandler: CompletionHandler?
+        
         
         init(data: Data?, urlResponse: URLResponse?, responseError: Error?){
             self.data = data
