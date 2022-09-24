@@ -13,6 +13,7 @@ protocol SessionProtocol {
         completionHandler: @escaping
         (Data?, URLResponse?, Error?) -> Void)
     -> URLSessionDataTask
+    func uploadTask(with: URLRequest, from: Data?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask
 }
 
 class APIClient{
@@ -34,7 +35,7 @@ class APIClient{
                 completion(nil, WebServicesError.responseError)
                 return
             }
-
+            
             guard let data = data else {
                 completion(nil, WebServicesError.DataEmptyError)
                 return
@@ -56,6 +57,56 @@ class APIClient{
         }
         dataTask.resume()
         
+    }
+    
+    func getAllToDoItems(completion: @escaping ( [String : Any]?, Error? )-> Void ){
+        
+        guard let url = URL(string: "https://awesometodos.com/alltodoitems") else {
+            fatalError()
+        }
+        let dataTask = session.dataTask(with: url){ (data, response, error) in
+            guard error == nil else{
+                completion(nil, WebServicesError.responseError)
+                return
+            }
+            guard let data = data else {
+                completion(nil, WebServicesError.DataEmptyError)
+                return
+            }
+            do{
+                let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String:String]
+                
+                completion(dict, nil)
+            }catch(let error){
+                completion(nil, error)
+            }
+        }
+        dataTask.resume()
+    }
+    func addToDoItemToServer(data: Data,completion: @escaping ( [String : Any]?, Error? )-> Void ){
+        
+        guard let url = URL(string: "https://awesometodos.com/") else {
+            fatalError()
+        }
+        let urlRequest = URLRequest(url: url)
+        let dataTask = session.uploadTask(with: urlRequest, from: data) { (data, response, error) in
+            guard error == nil else{
+                completion(nil, WebServicesError.responseError)
+                return
+            }
+            guard let data = data else {
+                completion(nil, WebServicesError.DataEmptyError)
+                return
+            }
+            do{
+                let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String:String]
+                
+                completion(dict, nil)
+            }catch(let error){
+                completion(nil, error)
+            }
+        }
+        dataTask.resume()
     }
 }
 enum WebServicesError: Error{

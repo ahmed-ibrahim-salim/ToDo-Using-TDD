@@ -113,12 +113,52 @@ class APIClientTests: XCTestCase {
         let errorExpectation = expectation(description: "Error")
         var catchedError: Error? = nil
         sut.loginUser(withName: "Foo", password: "Bar") { (token, error) in
-          catchedError = error
-          errorExpectation.fulfill()
+            catchedError = error
+            errorExpectation.fulfill()
         }
         waitForExpectations(timeout: 1) { (error) in
-          XCTAssertNotNil(catchedError)
-   }
+            XCTAssertNotNil(catchedError)
+        }
+    }
+    func test_GetAllToDoItems() throws {
+        // given
+        let data = "{\"title\" : \"Pizza\" ,\"itemDescription\" : \"\", \"timestamp\" : \"\", \"location\": \"\"}".data(using: .utf8)
+        
+        let mockSession = MockURLSession(data: data, urlResponse: nil, responseError: nil)
+        sut.session = mockSession
+        
+        let returnedTodoItemsExpectation = expectation(description: "returnedTodoItems")
+        
+        var returnedTodoItems: [String:String]? = nil
+        // when
+        sut.getAllToDoItems(){ (data, error) in
+            returnedTodoItems = data as? [String : String]
+            returnedTodoItemsExpectation.fulfill()
+        }
+        // then
+        waitForExpectations(timeout: 2){ (error) in
+            XCTAssertEqual(returnedTodoItems?["title"], "Pizza")
+        }
+    }
+    func test_addToDoItemToServer() throws {
+        // given
+        let data = "{\"title\" : \"Pizza\" ,\"itemDescription\" : \"\", \"timestamp\" : \"\", \"location\": \"\"}".data(using: .utf8)
+        
+        let mockSession = MockURLSession(data: data, urlResponse: nil, responseError: nil)
+        sut.session = mockSession
+        
+        let addTodoItemExpectation = expectation(description: "addTodoItem")
+        
+        var addedTodoItem: [String:String]? = nil
+        // when
+        sut.addToDoItemToServer(data: data ?? Data()){ (data, error) in
+            addedTodoItem = data as? [String : String]
+            addTodoItemExpectation.fulfill()
+        }
+        // then
+        waitForExpectations(timeout: 2){ (error) in
+            XCTAssertEqual(addedTodoItem?["title"], "Pizza")
+        }
     }
 }
 
@@ -133,9 +173,11 @@ extension APIClientTests{
             return URLComponents(url: url, resolvingAgainstBaseURL: true)
         }
         private let dataTask: MockTask
+        private let uploadDataTask: MockUploadTask
         
         init(data: Data?, urlResponse: URLResponse?, responseError: Error?){
             self.dataTask = MockTask(data: data, urlResponse: urlResponse, responseError: responseError)
+            self.uploadDataTask = MockUploadTask(data: data, urlResponse: urlResponse, responseError: responseError)
         }
         
         func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)-> URLSessionDataTask{
@@ -143,8 +185,32 @@ extension APIClientTests{
             dataTask.completionHandler = completionHandler
             return dataTask
         }
+        func uploadTask(with: URLRequest, from: Data?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionUploadTask{
+            uploadDataTask.completionHandler = completionHandler
+
+            return uploadDataTask
+        }
     }
     
+    class MockUploadTask: URLSessionUploadTask{
+        typealias CompletionHandler = (Data?, URLResponse?, Error?)-> Void
+        private let data: Data?
+        private let urlResponse: URLResponse?
+        private let responseError: Error?
+        var completionHandler: CompletionHandler?
+        
+        
+        init(data: Data?, urlResponse: URLResponse?, responseError: Error?){
+            self.data = data
+            self.urlResponse = urlResponse
+            self.responseError = responseError
+        }
+        override func resume() {
+            DispatchQueue.main.async {
+                self.completionHandler?(self.data,self.urlResponse, self.responseError)
+            }
+        }
+    }
     class MockTask: URLSessionDataTask{
         typealias CompletionHandler = (Data?, URLResponse?, Error?)-> Void
         private let data: Data?
