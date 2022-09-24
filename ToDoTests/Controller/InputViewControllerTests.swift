@@ -64,33 +64,33 @@ class InputViewControllerTests: XCTestCase {
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let timestamp = 1456092000.0
         let date = Date(timeIntervalSince1970: timestamp)
-
+        
         sut.titleTextField.text = "Foo"
         sut.dateTextField.text = dateFormatter.string(from: date)
         sut.locationTextField.text = "Bar"
         sut.addressTextField.text = "Infinite Loop 1, Cupertino"
         sut.descriptionTextField.text = "Baz"
-
+        
         let mockGeocoder = MockGeocoder()
         sut.geocoder = mockGeocoder
-
+        
         sut.save()
-
+        
         placemark = MockPlacemark()
-
+        
         let coordinate = CLLocationCoordinate2D(latitude: 37.3316851, longitude: -122.0300674)
         placemark.mockCoordinate = coordinate
-
+        
         mockGeocoder.completionHandler?([placemark], nil)
-
+        
         let item = sut.itemManager?.item(at: 0)
-
+        
         let testItem = ToDoItem(title: "Foo",
                                 itemDescription: "Baz",
                                 timestamp: timestamp,
                                 location: Location(name: "Bar",
-                                                coordinate: coordinate))
-
+                                                   coordinate: coordinate))
+        
         XCTAssertEqual(item, testItem)
     }
     func test_Save_AtLeastAddTitleToItemToBeAdded_AddsItem(){
@@ -133,22 +133,45 @@ class InputViewControllerTests: XCTestCase {
             geocoderAnswered.fulfill()
         }
         
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 4)
     }
-
+    func testSave_DismissesViewController() {
+         let mockInputViewController = MockInputViewController()
+         mockInputViewController.titleTextField = UITextField()
+         mockInputViewController.dateTextField = UITextField()
+         mockInputViewController.locationTextField = UITextField()
+         mockInputViewController.addressTextField = UITextField()
+         mockInputViewController.descriptionTextField = UITextField()
+        
+         mockInputViewController.titleTextField.text = "Test Title"
+        // when
+         mockInputViewController.save()
+        // then
+         XCTAssertTrue(mockInputViewController.didCalledDismiss)
+       }
 }
 
 extension InputViewControllerTests {
     
-     class MockGeocoder: CLGeocoder {
-       
-         var completionHandler: CLGeocodeCompletionHandler?
-       
-         override func geocodeAddressString(_ addressString: String,
-         completionHandler: @escaping CLGeocodeCompletionHandler) {
-         self.completionHandler = completionHandler
-       }
-         
+    class MockInputViewController: InputViewController{
+        
+        var didCalledDismiss: Bool = false
+        
+        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+            didCalledDismiss = true
+            super.dismiss(animated: flag, completion: completion)
+        }
+    }
+    
+    class MockGeocoder: CLGeocoder {
+        
+        var completionHandler: CLGeocodeCompletionHandler?
+        
+        override func geocodeAddressString(_ addressString: String,
+                                           completionHandler: @escaping CLGeocodeCompletionHandler) {
+            self.completionHandler = completionHandler
+        }
+        
     }
     
     class MockPlacemark: CLPlacemark{

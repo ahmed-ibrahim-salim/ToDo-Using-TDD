@@ -71,5 +71,7 @@ class InputViewController: UIViewController {
                 location: nil)
             self.itemManager?.add(itemWithNolocation)
         }
+        dismiss(animated: true)
     }
+    
 }

@@ -11,6 +11,7 @@
 		EF203ED228B2B9BB000E3AAD /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */; };
 		EF203ED428B2BD59000E3AAD /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */; };
 		EF203ED628B2C379000E3AAD /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */; };
+		EF32107928DF60A300D3C637 /* StoryboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32107828DF60A300D3C637 /* StoryboardTests.swift */; };
 		EF3C201D28B79AC40023562F /* InputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C201C28B79AC40023562F /* InputViewControllerTests.swift */; };
 		EF3C201F28B79B0D0023562F /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3C201E28B79B0D0023562F /* InputViewController.swift */; };
 		EF592C4328B61CDC00D2C1C9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */; };
@@ -56,6 +57,7 @@
 		EF203ED128B2B9BB000E3AAD /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		EF203ED328B2BD59000E3AAD /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 		EF203ED528B2C379000E3AAD /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
+		EF32107828DF60A300D3C637 /* StoryboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardTests.swift; sourceTree = "<group>"; };
 		EF3C201C28B79AC40023562F /* InputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewControllerTests.swift; sourceTree = "<group>"; };
 		EF3C201E28B79B0D0023562F /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		EF592C4228B61CDC00D2C1C9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				EF203ECE28B2B83E000E3AAD /* Model */,
 				EF800A0028DB528C00ED402C /* Controller */,
 				EF800A0128DB52A200ED402C /* APIClientTests.swift */,
+				EF32107828DF60A300D3C637 /* StoryboardTests.swift */,
 			);
 			path = ToDoTests;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				EF3C201D28B79AC40023562F /* InputViewControllerTests.swift in Sources */,
 				EF79192228B15FB300C76CAB /* LocationTests.swift in Sources */,
 				EFBEF76528B3D068006EF64A /* DetailViewControllerTests.swift in Sources */,
+				EF32107928DF60A300D3C637 /* StoryboardTests.swift in Sources */,
 				EF800A0228DB52A200ED402C /* APIClientTests.swift in Sources */,
 				EF203ED028B2B88F000E3AAD /* ItemListViewControllerTest.swift in Sources */,
 				EF70DE8928B122E700D1C2F1 /* ToDoItemTests.swift in Sources */,
