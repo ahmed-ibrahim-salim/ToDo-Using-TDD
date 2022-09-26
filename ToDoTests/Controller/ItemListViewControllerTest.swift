@@ -69,20 +69,31 @@ class ItemListViewControllerTest: XCTestCase {
     func test_ViewDidLoad_SetsItemManagerToDataProvider() {
         XCTAssertTrue(sut.itemManager === sut.dataProvider.itemManager)
     }
+    
     func testItemListVC_ReloadTableViewWhenAddNewTodoItem() {
+        
         let mockTableView = MocktableView()
         sut.tableView = mockTableView
+        
+        guard let addButton = sut.navigationItem.rightBarButtonItem else{
+            XCTFail()
+            return
+        }
+        
+        guard let action = addButton.action else{
+            XCTFail()
+            return
+        }
+//
         sut.performSelector(onMainThread: action, with: addButton, waitUntilDone: true)
+        
         guard let inputViewController = sut.presentedViewController as? InputViewController else{
             XCTFail()
             return
         }
-
+//
         inputViewController.titleTextField.text = "Test Title"
         inputViewController.save()
-//        sut.beginAppearanceTransition(true, animated: true)
-//        sut.endAppearanceTransition()
-//        mockTableView.reloadData()
 
         XCTAssertTrue(mockTableView.calledReloadData)
     }
