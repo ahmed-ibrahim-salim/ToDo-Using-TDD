@@ -9,7 +9,7 @@ import UIKit
 
 class ItemListViewController: UIViewController, ItemManagerSettable {
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate &
                                  ItemManagerSettable)!
     var itemManager: ItemManager?

@@ -12,17 +12,21 @@ class ItemListViewControllerTest: XCTestCase {
     var sut: ItemListViewController!
     var addButton: UIBarButtonItem!
     var action: Selector!
+    var mockTableView: MocktableView!
     
     override func setUpWithError() throws {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ItemListViewController")
-        sut = vc as? ItemListViewController
+        let nav = storyboard.instantiateInitialViewController() as! UINavigationController
+        UIApplication.shared.keyWindow?.rootViewController = nav
+        
+        sut = nav.topViewController as? ItemListViewController
+        mockTableView = MocktableView()
+        sut.tableView = mockTableView
+        
         addButton = sut.navigationItem.rightBarButtonItem
         action = addButton.action
-        UIApplication.shared.keyWindow?.rootViewController = sut
         
         sut.loadViewIfNeeded()
-        
     }
     override func tearDownWithError() throws {}
     
@@ -51,8 +55,8 @@ class ItemListViewControllerTest: XCTestCase {
         XCTAssertNotNil(sut.presentedViewController)
         XCTAssertTrue(sut.presentedViewController is InputViewController)
         let inputViewController =
-             sut.presentedViewController as! InputViewController
-        XCTAssertNotNil(inputViewController.titleTextField)
+             sut.presentedViewController as? InputViewController
+        XCTAssertNotNil(inputViewController?.titleTextField)
     }
     func testItemListVC_SharesItemManagerWithInputVC() {
         sut.performSelector(onMainThread: action, with: addButton, waitUntilDone: true)
@@ -71,9 +75,6 @@ class ItemListViewControllerTest: XCTestCase {
     }
     
     func testItemListVC_ReloadTableViewWhenAddNewTodoItem() {
-        
-        let mockTableView = MocktableView()
-        sut.tableView = mockTableView
         
         guard let addButton = sut.navigationItem.rightBarButtonItem else{
             XCTFail()

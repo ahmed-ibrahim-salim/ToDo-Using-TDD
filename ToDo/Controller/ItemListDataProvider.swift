@@ -60,6 +60,19 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let itemSection = Section(rawValue: indexPath.section) else{fatalError()}
+        
+        switch itemSection {
+        case .toDo:
+            NotificationCenter.default.post(name: NSNotification.Name("ItemSelectedNotification"),
+                                            object: self,
+                                            userInfo: ["index": indexPath.row])
+        default:
+            break
+        }
+    }
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         guard let section = Section(rawValue: indexPath.section)else{fatalError()}
         

@@ -7,7 +7,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "15EEAF5B-E1E1-4EBB-9F17-B25F296247CD"
+            uuid = "2CE57844-2D4D-4162-AE7D-30F629003220"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -20,52 +20,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "15EEAF5B-E1E1-4EBB-9F17-B25F296247CD - 32bef6d0eee9c4c9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoTests.ItemListViewControllerTest.MocktableView.reloadData() -&gt; ()"
-                  moduleName = "ToDoTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arabapps/Documents/projects/ToDo-Using-TDD/ToDoTests/Controller/ItemListViewControllerTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "109"
-                  endingLineNumber = "109"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  uuid = "15EEAF5B-E1E1-4EBB-9F17-B25F296247CD - 32bef6d0eee9c4a8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoTests.ItemListViewControllerTest.MocktableView.reloadData() -&gt; ()"
-                  moduleName = "ToDoTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arabapps/Documents/projects/ToDo-Using-TDD/ToDoTests/Controller/ItemListViewControllerTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  uuid = "15EEAF5B-E1E1-4EBB-9F17-B25F296247CD - 32bef6d0eee9c776"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ToDoTests.ItemListViewControllerTest.MocktableView.reloadData() -&gt; ()"
-                  moduleName = "ToDoTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arabapps/Documents/projects/ToDo-Using-TDD/ToDoTests/Controller/ItemListViewControllerTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "72">
-               </Location>
-               <Location
-                  uuid = "15EEAF5B-E1E1-4EBB-9F17-B25F296247CD - 32bef6d0eee9c524"
+                  uuid = "2CE57844-2D4D-4162-AE7D-30F629003220 - 32bef6d0eee9c524"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -80,7 +35,7 @@
                   offsetFromSymbolStart = "72">
                </Location>
                <Location
-                  uuid = "15EEAF5B-E1E1-4EBB-9F17-B25F296247CD - 32bef6d0eee9c5c1"
+                  uuid = "2CE57844-2D4D-4162-AE7D-30F629003220 - 32bef6d0eee9c524"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -90,12 +45,12 @@
                   urlString = "file:///Users/arabapps/Documents/projects/ToDo-Using-TDD/ToDoTests/Controller/ItemListViewControllerTest.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "117"
-                  endingLineNumber = "117"
-                  offsetFromSymbolStart = "72">
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "32">
                </Location>
                <Location
-                  uuid = "15EEAF5B-E1E1-4EBB-9F17-B25F296247CD - 32bef6d0eee9ca5e"
+                  uuid = "2CE57844-2D4D-4162-AE7D-30F629003220 - 32bef6d0eee9c4a8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -105,9 +60,9 @@
                   urlString = "file:///Users/arabapps/Documents/projects/ToDo-Using-TDD/ToDoTests/Controller/ItemListViewControllerTest.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120"
-                  offsetFromSymbolStart = "72">
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>
