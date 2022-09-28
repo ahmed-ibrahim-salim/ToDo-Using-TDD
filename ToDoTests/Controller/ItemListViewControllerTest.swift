@@ -12,17 +12,18 @@ class ItemListViewControllerTest: XCTestCase {
     var sut: ItemListViewController!
     var addButton: UIBarButtonItem!
     var action: Selector!
+    var mockNavigatinController: MockNavigationController!
     
     override func setUpWithError() throws {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier:
                                                         "ItemListViewController")
         sut = vc as? ItemListViewController
-        
+        mockNavigatinController = MockNavigationController(rootViewController: sut)
         addButton = sut.navigationItem.rightBarButtonItem
         action = addButton.action
-        UIApplication.shared.keyWindow?.rootViewController = sut
-        
+        UIApplication.shared.keyWindow?.rootViewController = mockNavigatinController
+
         sut.loadViewIfNeeded()
     }
     override func tearDownWithError() throws {
@@ -100,5 +101,37 @@ class ItemListViewControllerTest: XCTestCase {
         // then
         XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), 1)
     }
-    
+    func testItemSelectedNotification_PushesDetailVC(){
+        sut.itemManager?.add(ToDoItem(title: "foo"))
+        sut.itemManager?.add(ToDoItem(title: "bar"))
+        
+        NotificationCenter.default.post(name: NSNotification.Name("ItemSelectedNotification"), object: nil, userInfo: ["index": 1])
+        guard let detailViewController = mockNavigatinController.lastPushedViewController as? DetailViewController else {
+            return XCTFail()
+        }
+        guard let detailItemManager = detailViewController.itemInfo?.0 else {
+            return XCTFail()
+        }
+        guard let index = detailViewController.itemInfo?.1 else {
+            return XCTFail()
+        }
+        detailViewController.loadViewIfNeeded()
+        XCTAssertTrue(detailItemManager === sut.itemManager)
+        XCTAssertNotNil(detailViewController.titleLabel)
+        XCTAssertEqual(index, 1)
+    }
+}
+
+extension ItemListViewControllerTest{
+    class MockNavigationController: UINavigationController{
+        var lastPushedViewController: UIViewController?
+        
+        override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+            
+            lastPushedViewController = viewController
+            super.pushViewController(viewController, animated: animated)
+        }
+        
+        
+    }
 }
